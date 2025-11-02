@@ -5,3 +5,38 @@ description = "Minimal LLM inference engine"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = []
+
+[dependency-groups]
+test = [
+    "pip-audit>=2.7.3,<3",
+    "pre-commit>=4.0,<4.1",
+    "pytest-asyncio>=0.24.0,<0.25",
+    "pytest-cov>=6.0,<6.1",
+    "pytest-mock>=3.14,<3.15",
+    "pytest-timeout>=2.3,<2.4",
+    "pytest-xdist>=3.6,<3.7",
+    "pytest>=8.3,<8.4",
+]
+dev = [
+    "add-trailing-comma",
+    "black",
+    "codespell",
+    "ipython",
+    "isort",
+    "pre-commit",
+    "ruff",
+    "sqlalchemy2-stubs",
+    "sqlfluff",
+    "types-PyYAML",
+    "vulture",
+]
+
+[tool.uv]
+default-groups = [
+    "test",
+    "dev",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
