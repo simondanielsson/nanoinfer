@@ -1,5 +1,5 @@
 """Engine module."""
 
 
-class LLM:
+class InferenceEngine:
     """LLM inference engine."""
