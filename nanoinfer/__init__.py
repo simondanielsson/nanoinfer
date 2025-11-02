@@ -1,1 +1,3 @@
-from nanoinfer.engine import LLM as LLM
+"""Initializer for the nanoinfer package."""
+
+from nanoinfer.engine import LLM

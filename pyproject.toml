@@ -40,3 +40,63 @@ default-groups = [
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+[tool.pytest.ini_options]
+timeout = "60"
+addopts = [
+    "--cov-report=html:test-reports/htmlcov",
+    "--cov-report=term-missing:skip-covered",
+    "--cov-report=xml:test-reports/coverage.xml",
+    "--cov=api",
+    "--junitxml=test-reports/junit/junit.xml",
+    "--no-cov-on-fail",
+    "--strict-markers",
+    "--verbose",
+    "-r sxX",
+]
+cache_dir = ".cache"
+filterwarnings = [
+    "error",
+    "ignore::ResourceWarning"
+]
+testpaths = "tests"
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+exclude_also = [
+    # Do not complain if tests do not hit defensive assertion code.
+    "raise AssertionError",
+    "raise NotImplementedError",
+
+    # Do not complain if non-runnable code is not run.
+    "if __name__ == .__main__.:",
+]
+ignore_errors = true
+
+[tool.coverage.html]
+directory = "coverage_html_report"
+
+[tool.ruff]
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [ "ALL" ]
+ignore = [
+    "D203",   # one-blank-line-before-class (incompatible with D211).
+    "D213",   # multi-line-summary-second-line (incompatible with D212).
+    "TD002",  # Missing author in TODO.
+    "TD003",  # Missing issue link in TODO.
+    "FIX002", # Line contains TODO.
+]
+# Do not delete noqa directives covering plugins not implemented by Ruff (vulture)
+external = [
+    "V",    # vulture specific directives, see Ruff documentation
+    "F841", # unused arguments (unused cls argument in classmethods, conflicting with vulture)
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Do not complain if __init__.py files have unused imports.
+"__init__.py" = [ "F401" ]
+# Do not complain if tests use the assert keyword.
+"tests/*" = [ "S101" ]

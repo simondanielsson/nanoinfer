@@ -1,2 +1,5 @@
+"""Engine module."""
+
+
 class LLM:
-    pass
+    """LLM inference engine."""
