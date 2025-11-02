@@ -1,0 +1,7 @@
+[project]
+name = "nanoinfer"
+version = "0.1.0"
+description = "Minimal LLM inference engine"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
